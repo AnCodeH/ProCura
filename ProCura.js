@@ -44,6 +44,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 });
 
+//Language changer
 document.addEventListener("DOMContentLoaded", () => {
   const langSelect = document.getElementById("lang-switch");
 
