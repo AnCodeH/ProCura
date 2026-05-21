@@ -104,6 +104,7 @@ if (menuToggle && navMenu) {
 document.querySelectorAll('.desc-toggle').forEach(button => {
     button.addEventListener('click', (e) => {
         // Only trigger layout changes if the mobile media query layout is currently active
+        //window.innerWidth <= 900
         if (window.innerWidth <= 900) {
             e.preventDefault();
             e.stopPropagation(); // Keeps the menu from snapping shut on interaction
