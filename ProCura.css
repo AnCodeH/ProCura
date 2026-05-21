@@ -367,24 +367,6 @@ nav a{
     overflow:hidden;
 }
 
-/* RESPONSIVE */
-@media(max-width:900px){
-    .hero h1{
-        font-size:48px;
-    }
-    .innovation{
-        grid-template-columns:1fr;
-    }
-    nav{
-        display:none;
-    }
-    .stats{
-        flex-direction:column;
-        align-items:center;
-    }
-}
-
-/* HOVER DESCRIPTION POPUPS - BASE STRUCTURE */
 .nav-link-wrapper {
     position: relative;
     display: inline-flex;
@@ -397,17 +379,17 @@ nav a{
     left: 50%;
     transform: translateX(-50%) translateY(15px);
     width: 240px;
-    background: rgba(19, 29, 51, 0.95); 
+    background: rgba(19, 29, 51, 0.95);
     backdrop-filter: blur(8px);
     color: #cfcfcf;
     padding: 16px;
     font-size: 0.85rem;
     line-height: 1.5;
     border-radius: 12px;
-    border: 1px solid rgba(109, 213, 255, 0.2); 
+    border: 1px solid rgba(109, 213, 255, 0.2);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     z-index: 100;
-    white-space: normal; 
+    white-space: normal;
     text-align: left;
     
     /* Hidden by default */
@@ -430,7 +412,7 @@ nav a{
     border-top: 1px solid rgba(109, 213, 255, 0.2);
 }
 
-/* 💻 COMPUTER SCREEN LOGIC (Only runs if a mouse exists) */
+/* COMPUTER SCREEN LOGIC (Only runs if a mouse cursor exists) */
 @media (hover: hover) {
     /* Hide the mobile toggle button completely on computer screens */
     .desc-toggle {
@@ -449,9 +431,77 @@ nav a{
     }
 }
 
-/* 📱 PHONE & TOUCH SCREEN LOGIC */
+/* ==========================================
+   📱 MOBILE & HAMBURGER COMPATIBILITY (900px and down)
+   ========================================== */
 @media (hover: none), (max-width: 900px) {
-    /* Style and show the small tap icon next to text link items */
+    /* Base section updates from your original responsive styles */
+    .hero h1 {
+        font-size: 48px;
+    }
+    .innovation {
+        grid-template-columns: 1fr;
+    }
+    .stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 1. Reveal and style the hamburger layout icons */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 26px;
+        height: 18px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .menu-toggle span {
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        border-radius: 3px;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* 2. Convert old hidden nav into an interactive slide-out side drawer container */
+    nav {
+        display: flex !important; /* Forces layout system to switch away from desktop flex */
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%; /* Keeps navigation menu hidden off-screen to the right side by default */
+        width: 280px;
+        height: 100vh;
+        background: #0f1728;
+        padding: 100px 40px;
+        gap: 30px;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+    }
+
+    /* Active state classes handled via JavaScript triggers */
+    nav.active {
+        right: 0;
+    }
+
+    /* Transforms menu toggle lines cleanly into an 'X' symbol when menu drawer is open */
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(7.5px) rotate(45deg);
+    }
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-7.5px) rotate(-45deg);
+    }
+
+    /* 3. Style and show small mobile interaction info button wrapper elements */
     .desc-toggle {
         display: inline-block;
         background: rgba(109, 213, 255, 0.1);
@@ -467,25 +517,38 @@ nav a{
         margin-left: 8px;
     }
 
-    /* Open the popup box cleanly when the user taps on mobile */
-    .nav-link-wrapper.is-open .desc-box {
-        opacity: 1;
-        visibility: visible;
-        transform: translateX(-50%) translateY(8px);
-    }
-
-    /* Reposition popup drop logic specifically inside responsive menus */
+    /* 4. Convert absolute dropdown popup layouts into accordion block layers for drawers */
     .desc-box {
-        left: 0;
-        transform: translateY(15px);
-        width: 260px;
-    }
-    
-    .desc-box::before {
-        left: 15px; /* Shift the top pointing arrow leftward */
+        position: static;
+        transform: none !important;
+        width: 100%;
+        margin-top: 12px;
+        display: none; /* Uses accordion block layout reveals instead of opacity transitions */
+        opacity: 1 !important;
+        visibility: visible !important;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(109, 213, 255, 0.1);
     }
 
+    .desc-box::before {
+        display: none; /* Remove structural layout top pointer triangle layers on compact mobile */
+    }
+
+    .nav-link-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    /* Toggles descriptive panel open animation inside drawer layout */
     .nav-link-wrapper.is-open .desc-box {
-        transform: translateY(8px);
+        display: block;
+    }
+}
+
+/* DESKTOP SWITCH SAFETY LAYER */
+@media (min-width: 901px) {
+    .menu-toggle {
+        display: none !important; /* Guarantees hamburger triggers never leak onto computer viewports */
     }
 }

@@ -88,26 +88,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 //**PHONE compatibility**
+// 1. Hamburger Drawer Toggle Controller
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.getElementById('nav-menu');
+
+if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation(); // Stops the menu from immediately closing due to global clicks
+        menuToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+}
+
+// 2. Mobile-specific click handling for product description toggles
 document.querySelectorAll('.desc-toggle').forEach(button => {
     button.addEventListener('click', (e) => {
-        e.preventDefault(); 
-        e.stopPropagation(); 
-        
-        const wrapper = button.closest('.nav-link-wrapper');
-        
-        // Close any other open popup boxes first
-        document.querySelectorAll('.nav-link-wrapper').forEach(item => {
-            if (item !== wrapper) item.classList.remove('is-open');
-        });
-        
-        // Toggle the current popup active visibility class
-        wrapper.classList.toggle('is-open');
+        // Only trigger layout changes if the mobile media query layout is currently active
+        if (window.innerWidth <= 900) {
+            e.preventDefault();
+            e.stopPropagation(); // Keeps the menu from snapping shut on interaction
+            
+            const wrapper = button.closest('.nav-link-wrapper');
+            
+            // Auto-collapse any other open description boxes first
+            document.querySelectorAll('.nav-link-wrapper').forEach(item => {
+                if (item !== wrapper) item.classList.remove('is-open');
+            });
+            
+            // Open or close our targeted layout panel
+            wrapper.classList.toggle('is-open');
+        }
     });
 });
 
-// Close all description popups instantly if a user taps anywhere else on mobile screen
-document.addEventListener('click', () => {
-    document.querySelectorAll('.nav-link-wrapper').forEach(item => {
-        item.classList.remove('is-open');
-    });
+// 3. Smart Global Window Tap Closer
+document.addEventListener('click', (e) => {
+    // If a user clicks completely outside a link wrapper, hide active descriptions
+    if (!e.target.closest('.nav-link-wrapper')) {
+        document.querySelectorAll('.nav-link-wrapper').forEach(item => {
+            item.classList.remove('is-open');
+        });
+    }
+
+    // If a user clicks outside the menu and toggle button, collapse the drawer
+    if (navMenu && menuToggle && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+    }
 });
