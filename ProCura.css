@@ -384,10 +384,11 @@ nav a{
     }
 }
 
-/* HOVER DESCRIPTION POPUPS */
+/* HOVER DESCRIPTION POPUPS - BASE STRUCTURE */
 .nav-link-wrapper {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
 }
 
 .desc-box {
@@ -396,33 +397,26 @@ nav a{
     left: 50%;
     transform: translateX(-50%) translateY(15px);
     width: 240px;
-    
-    /* Theme integration: matches dark background with transparency */
-    background: rgba(19, 29, 51, 0.9); 
+    background: rgba(19, 29, 51, 0.95); 
     backdrop-filter: blur(8px);
-    
-    /* Matches text-color hierarchy from the rest of the website */
     color: #cfcfcf;
     padding: 16px;
     font-size: 0.85rem;
     line-height: 1.5;
     border-radius: 12px;
-    
-    /* Matches section card shadows and structural borders */
     border: 1px solid rgba(109, 213, 255, 0.2); 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     z-index: 100;
     white-space: normal; 
     text-align: left;
     
-    /* Hidden state transition properties */
+    /* Hidden by default */
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
 }
 
-/* Arrow indicator styled to look identical to the box border frame */
 .desc-box::before {
     content: '';
     position: absolute;
@@ -436,9 +430,62 @@ nav a{
     border-top: 1px solid rgba(109, 213, 255, 0.2);
 }
 
-/* Triggers sleek, modern smooth fade up on active user hover */
-.nav-link-wrapper:hover .desc-box {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(8px);
+/* 💻 COMPUTER SCREEN LOGIC (Only runs if a mouse exists) */
+@media (hover: hover) {
+    /* Hide the mobile toggle button completely on computer screens */
+    .desc-toggle {
+        display: none !important;
+    }
+    
+    /* Trigger the popup instantly when computer cursor mouse-hovers */
+    .nav-link-wrapper:hover .desc-box {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(8px);
+    }
+    
+    .nav-link-wrapper:hover a {
+        color: #6dd5ff;
+    }
+}
+
+/* 📱 PHONE & TOUCH SCREEN LOGIC */
+@media (hover: none), (max-width: 900px) {
+    /* Style and show the small tap icon next to text link items */
+    .desc-toggle {
+        display: inline-block;
+        background: rgba(109, 213, 255, 0.1);
+        color: #6dd5ff;
+        border: 1px solid rgba(109, 213, 255, 0.3);
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        font-size: 11px;
+        line-height: 16px;
+        text-align: center;
+        cursor: pointer;
+        margin-left: 8px;
+    }
+
+    /* Open the popup box cleanly when the user taps on mobile */
+    .nav-link-wrapper.is-open .desc-box {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(8px);
+    }
+
+    /* Reposition popup drop logic specifically inside responsive menus */
+    .desc-box {
+        left: 0;
+        transform: translateY(15px);
+        width: 260px;
+    }
+    
+    .desc-box::before {
+        left: 15px; /* Shift the top pointing arrow leftward */
+    }
+
+    .nav-link-wrapper.is-open .desc-box {
+        transform: translateY(8px);
+    }
 }

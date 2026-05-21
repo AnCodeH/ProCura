@@ -1,4 +1,4 @@
-// Counter Animation
+//**Counter Animation**
 
 const counters = document.querySelectorAll('.counter');
 
@@ -27,7 +27,7 @@ counters.forEach(counter => {
 });
 
 
-// Smooth Scroll
+//**Smooth Scroll**
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
@@ -44,7 +44,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 });
 
-//Language changer
+//**Language changer**
 document.addEventListener("DOMContentLoaded", () => {
   const langSelect = document.getElementById("lang-switch");
 
@@ -84,4 +84,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedLang = localStorage.getItem("preferredLanguage") || "en";
   langSelect.value = savedLang;
   setLanguage(savedLang);
+});
+
+
+//**PHONE compatibility**
+document.querySelectorAll('.desc-toggle').forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        e.stopPropagation(); 
+        
+        const wrapper = button.closest('.nav-link-wrapper');
+        
+        // Close any other open popup boxes first
+        document.querySelectorAll('.nav-link-wrapper').forEach(item => {
+            if (item !== wrapper) item.classList.remove('is-open');
+        });
+        
+        // Toggle the current popup active visibility class
+        wrapper.classList.toggle('is-open');
+    });
+});
+
+// Close all description popups instantly if a user taps anywhere else on mobile screen
+document.addEventListener('click', () => {
+    document.querySelectorAll('.nav-link-wrapper').forEach(item => {
+        item.classList.remove('is-open');
+    });
 });
