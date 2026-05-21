@@ -16,22 +16,51 @@
   >
 </head>
 
-<body> <!-- Moved opening body tag above header for valid HTML structure -->
+<body>
 
-<!-- NAVBAR -->
-<header class="navbar">
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a class="logo" href="index.html">ProCura</a>
 
-  <a class="logo" href="index.html">ProCura</a>
+        <!-- Hamburger Icon (Only visible on mobile screens) -->
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-  <!-- Language Selector Dropdown -->
-  <div class="lang-selector">
-    <select id="lang-switch">
-      <option value="en">EN</option>
-      <option value="de">DE</option>
-    </select>
-  </div>
+        <!-- Navigation Menu Container -->
+        <nav id="nav-menu">
+            <div class="nav-link-wrapper">
+                <a href="product.html?product=1" data-i18n="product1-title">Health Item 1</a>
+                <button class="desc-toggle" aria-label="Toggle Description">i</button>
+                <div class="desc-box" data-i18n="product1-desc">Description of item 1</div>
+            </div>
+            <div class="nav-link-wrapper">
+                <a href="product.html?product=2" data-i18n="product2-title">Health Item 2</a>
+                <button class="desc-toggle" aria-label="Toggle Description">i</button>
+                <div class="desc-box" data-i18n="product2-desc">Description of item 2</div>
+            </div>
+            <div class="nav-link-wrapper">
+                <a href="product.html?product=3" data-i18n="product3-title">Health Item 3</a>
+                <button class="desc-toggle" aria-label="Toggle Description">i</button>
+                <div class="desc-box" data-i18n="product3-desc">Description of item 3</div>
+            </div>
+            <div class="nav-link-wrapper">
+                <a href="product.html?product=4" data-i18n="product4-title">Health Item 4</a>
+                <button class="desc-toggle" aria-label="Toggle Description">i</button>
+                <div class="desc-box" data-i18n="product4-desc">Description of item 4</div>
+            </div>
+        </nav>
 
-</header>
+        <!-- Language Selector Dropdown-->
+        <div class="lang-selector">
+            <select id="lang-switch">
+                <option value="en">EN</option>
+                <option value="de">DE</option>
+            </select>
+        </div>
+    </header>
 
   <section class="booking-page">
 
@@ -41,13 +70,7 @@
       <p data-i18n="booking_subheading">Choose a time that works best for you.</p>
     </div>
 
-    <!-- Calendly inline widget begin -->
-    <div
-      id="calendly-widget"
-      class="calendly-inline-widget"
-      data-url="https://calendly.com/YOUR-LINK"
-      style="min-width:320px;height:750px;"
-    ></div>
+<div id="calendly-widget" class="calendly-inline-widget" data-url="https://calendly.com/YOUR-LINK"></div>
 
   </section>
 

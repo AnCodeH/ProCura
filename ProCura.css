@@ -6,11 +6,20 @@
     padding:0; 
     box-sizing:border-box; 
 } 
-body{ 
-    font-family:'Inter', sans-serif; 
+html, body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
     background:#0a0f1c; 
     color:white; 
-    overflow-x:hidden; 
+    /* Prevents horizontal overflow layout breaks */
+    overflow-x: hidden; 
+    /* Calibrates initial rendering scale across web viewports */
+    -webkit-text-size-adjust: 100%; 
+}
+body { 
+    font-family:'Inter', sans-serif; 
 } 
 
 /* ==========================================
@@ -120,18 +129,22 @@ nav a{
 } 
 
 /* ==========================================
-   HERO HERO SECTION
+   HERO SECTION (Optimized Scaling)
    ========================================== */
 .hero{ 
-    height:100vh; 
+    min-height: 100vh; /* Using min-height allows the hero block content space to breath */
+    height: auto;
     position:relative; 
     display:flex; 
     align-items:center; 
-    padding:0 8%; 
+    padding: 140px 8% 80px 8%; /* Increased top cushion room to make space for fixed structural header positioning */
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://unsplash.com'); 
     background-size:cover; 
-    background-position:center; 
+    background-position:center center; 
+    background-repeat: no-repeat;
+    width: 100%;
 } 
+
 .hero-content{ 
     max-width:700px; 
     position: relative;
@@ -264,6 +277,70 @@ nav a{
 } 
 
 /* ==========================================
+   📬 CALENDLY BOOKING LAYOUT RESIZER
+   ========================================== */
+.booking-page { 
+    min-height: 100vh; 
+    background: #0a0f1c; 
+    padding: 140px 8% 60px 8%; 
+    color: white; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+.booking-header { 
+    text-align: center; 
+    margin-bottom: 40px; 
+    width: 100%;
+    max-width: 800px;
+} 
+.booking-header h1 { 
+    font-size: clamp(28px, 6vw, 56px); /* Fluid typography tracking */
+    margin-bottom: 15px; 
+    font-weight: 700;
+    line-height: 1.2;
+} 
+.booking-header p { 
+    color: #cfcfcf; 
+    font-size: clamp(14px, 4vw, 18px); 
+} 
+
+/* Responsive Widget Container Wrapper Frame */
+.calendly-inline-widget { 
+    width: 100%;
+    max-width: 1000px;
+    height: 700px; /* Standard fallback height limit rule for computer displays */
+    border-radius: 20px; 
+    overflow: hidden; 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    background: transparent;
+} 
+
+/* ==========================================
+   📱 MOBILE RESPONSIVE MEDIA BLOCK OVERRIDES
+   ========================================== */
+@media (max-width: 900px) {
+    .booking-page {
+        padding: 110px 5% 40px 5%;
+    }
+    .booking-header {
+        margin-bottom: 25px;
+    }
+    .calendly-inline-widget { 
+        /* Restores a cleaner ratio so users see the background edges and content headers */
+        height: 600px; 
+        border-radius: 12px;
+    } 
+}
+
+@media (max-width: 480px) {
+    .calendly-inline-widget { 
+        /* Clamps down further on extremely short mobile screens */
+        height: 540px; 
+    } 
+}
+
+/* ==========================================
    📱 COMPACT SCREEN & MOBILE MEDIA QUERY
    ========================================== */
 @media (max-width: 900px) { 
@@ -271,40 +348,52 @@ nav a{
         padding: 20px 6%;
     }
     
-    /* Layout Overrides */
+    /* Responsive Text Layout Scales (Clamped to avoid breaking screens) */
     .hero h1 { 
-        font-size: 40px; 
+        font-size: clamp(28px, 7vw, 42px); /* Automatically recalculates based on true viewport widths */
+        line-height: 1.2;
     } 
+    .hero-subtitle {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
     .hero-text {
-        font-size: 16px;
+        font-size: clamp(14px, 4vw, 18px);
+        margin-bottom: 25px;
     }
     .hero-buttons {
         flex-direction: column;
         gap: 12px;
+        width: 100%;
     }
     .primary-btn, .secondary-btn {
         width: 100%;
         text-align: center;
+        padding: 14px 24px;
     }
     .innovation { 
         grid-template-columns: 1fr; 
         gap: 40px;
-        padding: 80px 6%;
+        padding: 60px 6%;
     } 
     .innovation h2 {
-        font-size: 36px;
+        font-size: clamp(26px, 6vw, 36px);
+        line-height: 1.2;
     }
     .stats { 
         flex-direction: column; 
         align-items: center; 
         padding: 60px 6%;
+        gap: 20px;
     } 
     .stat-card {
         width: 100%;
+        padding: 30px 20px;
     }
     .footer-content {
         flex-direction: column;
         gap: 30px;
+        padding: 0;
     }
 
     /* Interactive Hamburger Component Lines */
@@ -412,5 +501,5 @@ nav a{
 @media (min-width: 901px) { 
     .menu-toggle, .desc-toggle { 
         display: none !important; 
-    } 
+    }
 }
