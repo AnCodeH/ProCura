@@ -1,139 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ProCura</title>
-  <link rel="stylesheet" href="ProCura.css"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://googleapis.com" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ProCura</title>
+    <link rel="stylesheet" href="ProCura.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-
-    <a class="logo" href="index.html">ProCura</a>
-    
-    <nav>
-      <a href="#products" data-i18n="nav-products">Products</a>
-      <a href="#innovation" data-i18n="nav-innovation">Innovation</a>
-      <a href="#about" data-i18n="nav-about">About</a>
-      <a href="#contact" data-i18n="nav-contact">Contact</a>
-    </nav>
-
-
-    <button class="nav-btn" data-i18n="nav-btn">Get Started</button>
-
-    <!-- Language Selector Dropdown -->
-    <div class="lang-selector">
-      <select id="lang-switch">
-        <div>hello</div>
-        <option value="en">EN</option>
-        <option value="de">DE</option>
-      </select>
-    </div>
-
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-subtitle" data-i18n="hero-subtitle">Healthcare Reimagined</p>
-      <h1 data-i18n="hero-title">Transforming patient care through healthcare products.</h1>
-      <p class="hero-text" data-i18n="hero-text">We deliver healthcare.</p>
-      <div class="hero-buttons">
-        <button class="primary-btn" data-i18n="hero-btn-primary">Explore Solutions</button>
-        <button class="secondary-btn" data-i18n="hero-btn-secondary">Learn More</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="stats">
-    <div class="stat-card">
-      <h2 class="counter" data-target="2">0</h2>
-      <p data-i18n="stats-partners">Healthcare Partners</p>
-    </div>
-    <div class="stat-card">
-      <h2 class="counter" data-target="98">0</h2>
-      <p data-i18n="stats-satisfaction">Patient Satisfaction</p>
-    </div>
-    <div class="stat-card">
-      <h2 class="counter" data-target="4">0</h2>
-      <p data-i18n="stats-countries">Countries Served</p>
-    </div>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section class="products" id="products">
-    <div class="section-title">
-      <p data-i18n="products-subtitle">OUR SOLUTIONS</p>
-      <h2 data-i18n="products-title">Healthcare products built for you</h2>
-    </div>
-    <div class="product-grid">
-      <a href="product.html?product=1" class="product-link">
-        <div class="product-card">
-          <div class="card-number">01</div>
-          <h3 data-i18n="product1-title">Health Item 1</h3>
-          <p data-i18n="product1-desc">generic text</p>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a class="logo" href="index.html">ProCura</a>
+        <nav>
+            <div class="nav-link-wrapper">
+                <a href="product.html?product=1" data-i18n="product1-title">Health Item 1</a>
+                <div class="desc-box" data-i18n="product1-desc">Description of item 1</div>
+            </div>
+            <div class="nav-link-wrapper">
+                <a href="product.html?product=2" data-i18n="product2-title">Health Item 2</a>
+                <div class="desc-box" data-i18n="product2-desc">Description of item 2</div>
+            </div>
+            <div class="nav-link-wrapper">
+                <a href="product.html?product=3" data-i18n="product3-title">Health Item 3</a>
+                <div class="desc-box" data-i18n="product3-desc">Description of item 3</div>
+            </div>
+            <div class="nav-link-wrapper">
+                <a href="product.html?product=4" data-i18n="product4-title">Health Item 4</a>
+                <div class="desc-box" data-i18n="product4-desc">Description of item 4</div>
+            </div>
+        </nav>
+        
+        <button class="nav-btn" data-i18n="nav-btn">Get Started</button>
+        
+        <!-- Language Selector Dropdown -->
+        <div class="lang-selector">
+            <select id="lang-switch">
+                <option value="en">EN</option>
+                <option value="de">DE</option>
+            </select>
         </div>
-      </a>
-      <a href="product.html?product=2" class="product-link">
-        <div class="product-card">
-          <div class="card-number">02</div>
-          <h3 data-i18n="product2-title">Health Item 2</h3>
-          <p data-i18n="product2-desc">other generic text</p>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle" data-i18n="hero-subtitle">Healthcare Reimagined</p>
+            <h1 data-i18n="hero-title">Transforming patient care through healthcare products.</h1>
+            <p class="hero-text" data-i18n="hero-text">We deliver healthcare.</p>
+            <div class="hero-buttons">
+                <button class="primary-btn" data-i18n="hero-btn-primary">Explore Solutions</button>
+                <button class="secondary-btn" data-i18n="hero-btn-secondary">Learn More</button>
+            </div>
         </div>
-      </a>
-      <a href="product.html?product=3" class="product-link">
-        <div class="product-card">
-          <div class="card-number">03</div>
-          <h3 data-i18n="product3-title">Health Item 3</h3>
-          <p data-i18n="product3-desc">Even more generic text</p>
+    </section>
+
+    <!-- INNOVATION -->
+    <section class="innovation" id="innovation">
+        <div class="innovation-left">
+            <p class="small-title" data-i18n="innovation-subtitle">INNOVATION</p>
+            <h2 data-i18n="innovation-title">Healthcare innovation</h2>
+            <p data-i18n="innovation-text">Our healthcare system of innovation is the best</p>
+            <button class="primary-btn" data-i18n="innovation-btn">Discover Innovation</button>
         </div>
-      </a>
-    </div>
-  </section>
+        <div class="innovation-right">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1600&auto=format&fit=crop" alt="">
+        </div>
+    </section>
 
-  <!-- INNOVATION -->
-  <section class="innovation" id="innovation">
-    <div class="innovation-left">
-      <p class="small-title" data-i18n="innovation-subtitle">INNOVATION</p>
-      <h2 data-i18n="innovation-title">Healthcare innovation</h2>
-      <p data-i18n="innovation-text">Our healthcare system of innovation is the best</p>
-      <button class="primary-btn" data-i18n="innovation-btn">Discover Innovation</button>
-    </div>
-    <div class="innovation-right">
-      <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1600&auto=format&fit=crop" alt="">
-    </div>
-  </section>
+    <!-- STATS -->
+    <section class="stats">
+        <div class="stat-card">
+            <h2 class="counter" data-target="2">0</h2>
+            <p data-i18n="stats-partners">Healthcare Partners</p>
+        </div>
+        <div class="stat-card">
+            <h2 class="counter" data-target="98">0</h2>
+            <p data-i18n="stats-satisfaction">Patient Satisfaction</p>
+        </div>
+        <div class="stat-card">
+            <h2 class="counter" data-target="4">0</h2>
+            <p data-i18n="stats-countries">Countries Served</p>
+        </div>
+    </section>
 
-  <!-- FOOTER -->
-  <footer class="footer" id="contact">
-    <div class="footer-content">
-      <div>
-        <h3>ProCura</h3>
-        <p data-i18n="footer-tagline">healthcare solutions.</p>
-      </div>
-      <div>
-        <h4 data-i18n="footer-header-company">Company</h4>
-        <a href="#" data-i18n="footer-link-about">About</a>
-        <a href="#" data-i18n="footer-link-innovation">Innovation</a>
-      </div>
-      <div>
-        <h4 data-i18n="footer-header-resources">Resources</h4>
-        <a href="#products" data-i18n="footer-link-products">Products</a>
-        <a href="#" data-i18n="footer-link-insights">Insights</a>
-        <a href="#" data-i18n="footer-link-support">Support</a>
-      </div>
-    </div>
-    <div class="footer-bottom" data-i18n="footer-copyright">
-      © 2026 ProCura Healthcare. All rights reserved.
-    </div>
-  </footer>
+    <!-- FOOTER -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div>
+                <h3>ProCura</h3>
+                <p data-i18n="footer-tagline">healthcare solutions.</p>
+            </div>
+            <div>
+                <h4 data-i18n="footer-header-company">Company</h4>
+                <a href="#" data-i18n="footer-link-about">About</a>
+                <a href="#" data-i18n="footer-link-innovation">Innovation</a>
+            </div>
+            <div>
+                <h4 data-i18n="footer-header-resources">Resources</h4>
+                <a href="#" data-i18n="footer-link-products">Products</a>
+                <a href="#" data-i18n="footer-link-insights">Insights</a>
+                <a href="#" data-i18n="footer-link-support">Support</a>
+            </div>
+        </div>
+        <div class="footer-bottom" data-i18n="footer-copyright">
+            © 2026 ProCura Healthcare. All rights reserved.
+        </div>
+    </footer>
 
-  <script src="ProCura.js"></script>
+    <script src="ProCura.js"></script>
 </body>
 </html>

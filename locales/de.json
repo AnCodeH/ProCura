@@ -19,12 +19,14 @@
   "products-title": "Gesundheitsprodukte, die für Sie entwickelt wurden",
 
   "product1-title": "Gesundheitsprodukt 1",
-  "product1-desc": "Allgemeiner Text",
+  "product1-desc": "Beschreibung von Artikel 1",
   "product2-title": "Gesundheitsprodukt 2",
-  "product2-desc": "Weiterer allgemeiner Text",
+  "product2-desc": "Beschreibung von Artikel 2",
   "product3-title": "Gesundheitsprodukt 3",
-  "product3-desc": "Noch mehr allgemeiner Text",
-
+  "product3-desc": "Beschreibung von Artikel 3",
+  "product4-title": "Gesundheitsprodukt 4",
+  "product4-desc": "Beschreibung von Artikel 4",
+  
   "innovation-subtitle": "INNOVATION",
   "innovation-title": "Innovation im Gesundheitswesen",
   "innovation-text": "Unser Innovationssystem im Gesundheitswesen ist führend.",
