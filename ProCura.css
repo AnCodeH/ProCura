@@ -11,8 +11,10 @@ html, body {
     max-width: 100%;
     margin: 0;
     padding: 0;
-    background:#0a0f1c; 
-    color:white; 
+    /* Clean light background */
+    background:#f8f9fa; 
+    /* Deep navy blue for high-contrast primary text */
+    color:#0f1c3f; 
     /* Prevents horizontal overflow layout breaks */
     overflow-x: hidden; 
     /* Calibrates initial rendering scale across web viewports */
@@ -23,122 +25,17 @@ body {
 } 
 
 /* ==========================================
-   NAVIGATION BAR
-   ========================================== */
-.navbar{ 
-    position:fixed; 
-    top:0; 
-    width:100%; 
-    display:flex; 
-    justify-content:space-between; 
-    align-items:center; 
-    padding:25px 8%; 
-    z-index:1000; 
-    background:rgba(0,0,0,0.25); 
-    backdrop-filter:blur(10px); 
-    -webkit-backdrop-filter:blur(10px);
-} 
-.logo{ 
-    text-decoration:none; 
-    color:white; 
-    font-size:28px; 
-    font-weight:700; 
-} 
-nav{ 
-    display:flex; 
-    gap:40px; 
-    align-items:center;
-} 
-nav a{ 
-    color:white; 
-    text-decoration:none; 
-    font-size:15px; 
-    transition:0.3s; 
-} 
-.nav-link-wrapper:hover a { 
-    color:#6dd5ff; 
-} 
-.lang-selector select { 
-    background: rgba(255, 255, 255, 0.1); 
-    color: white; 
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-    padding: 6px 12px; 
-    border-radius: 4px; 
-    cursor: pointer; 
-    font-family: 'Inter', sans-serif; 
-    outline: none; 
-} 
-.lang-selector select option { 
-    background: #0a0f1c; 
-    color: white; 
-} 
-
-/* ==========================================
-   DESKTOP HOVER DESCRIPTION POPUPS
-   ========================================== */
-.nav-link-wrapper { 
-    position: relative; 
-    display: inline-flex; 
-    align-items: center; 
-} 
-.desc-box { 
-    position: absolute; 
-    top: 100%; 
-    left: 50%; 
-    transform: translateX(-50%) translateY(15px); 
-    width: 240px; 
-    background: rgba(19, 29, 51, 0.95); 
-    backdrop-filter: blur(8px); 
-    color: #cfcfcf; 
-    padding: 16px; 
-    font-size: 0.85rem; 
-    line-height: 1.5; 
-    border-radius: 12px; 
-    border: 1px solid rgba(109, 213, 255, 0.2); 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
-    z-index: 100; 
-    white-space: normal; 
-    text-align: left; 
-    opacity: 0; 
-    visibility: hidden; 
-    transition: opacity 0.3s ease, transform 0.3s ease; 
-    pointer-events: none; 
-} 
-.desc-box::before { 
-    content: ''; 
-    position: absolute; 
-    top: -6px; 
-    left: 50%; 
-    transform: translateX(-50%) rotate(45deg); 
-    width: 10px; 
-    height: 10px; 
-    background: #131d33; 
-    border-left: 1px solid rgba(109, 213, 255, 0.2); 
-    border-top: 1px solid rgba(109, 213, 255, 0.2); 
-} 
-
-@media (hover: hover) { 
-    .desc-toggle { 
-        display: none !important; 
-    } 
-    .nav-link-wrapper:hover .desc-box { 
-        opacity: 1; 
-        visibility: visible; 
-        transform: translateX(-50%) translateY(8px); 
-    } 
-} 
-
-/* ==========================================
    HERO SECTION (Optimized Scaling)
    ========================================== */
 .hero{ 
-    min-height: 100vh; /* Using min-height allows the hero block content space to breath */
+    min-height: 100vh; 
     height: auto;
     position:relative; 
     display:flex; 
     align-items:center; 
-    padding: 140px 8% 80px 8%; /* Increased top cushion room to make space for fixed structural header positioning */
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://unsplash.com'); 
+    padding: 140px 8% 80px 8%; 
+    /* Softened background gradient overlay for light mode readibility */
+    background: linear-gradient(rgba(248,249,2fa,0.85), rgba(240,242,245,0.9)), url('https://unsplash.com'); 
     background-size:cover; 
     background-position:center center; 
     background-repeat: no-repeat;
@@ -150,21 +47,23 @@ nav a{
     position: relative;
     z-index: 2;
 } 
-.hero-subtitle{ 
-    color:#6dd5ff; 
+.hero-subtitle { 
+    color:#3b4d2b; /* Dark Olive Green */
     margin-bottom:20px; 
     letter-spacing:2px; 
+    font-weight: 600;
 } 
 .hero h1{ 
     font-size:72px; 
     line-height:1.05; 
     margin-bottom:25px; 
     font-weight:700; 
+    color: #0f1c3f; /* Deep Navy */
 } 
 .hero-text{ 
     font-size:20px; 
     line-height:1.7; 
-    color:#d4d4d4; 
+    color:#4a5568; 
     margin-bottom:35px; 
 } 
 .hero-buttons{ 
@@ -180,75 +79,203 @@ nav a{
     transition: 0.3s ease;
 } 
 .primary-btn{ 
-    background:#00a8ff; 
+    background:#3b4d2b; /* Olive Green Primary Button */
     border:none; 
     color:white; 
 } 
+.primary-btn:hover {
+    background: #2c3a20; /* Darker olive hover */
+}
 .secondary-btn{ 
     background:transparent; 
-    border:1px solid rgba(255,255,255,0.3); 
-    color:white; 
+    border:1px solid #3b4d2b; 
+    color:#3b4d2b; 
 } 
+.secondary-btn:hover {
+    background: rgba(59, 77, 43, 0.05);
+}
+
+.accent-line {
+    width: 80px;            
+    height: 6px;            
+    background-color: #3b2f70; 
+    margin-top: 2rem;       
+    margin-bottom: 2rem;    
+}
 
 /* ==========================================
-   INNOVATION SECTION
+   FOCUS SECTION
    ========================================== */
-.innovation{ 
-    display:grid; 
-    grid-template-columns:1fr 1fr; 
-    gap:60px; 
-    align-items:center; 
-    padding:120px 8%; 
-    background:#0f1728; 
-} 
-.small-title{ 
-    color:#6dd5ff; 
-    letter-spacing:2px; 
-    margin-bottom:20px; 
-} 
-.innovation h2{ 
-    font-size:56px; 
-    margin-bottom:25px; 
-} 
-.innovation p{ 
-    color:#cfcfcf; 
-    line-height:1.8; 
-    margin-bottom:30px; 
-} 
-.innovation img{ 
-    width:100%; 
-    border-radius:20px; 
-} 
+/* Base Section Styling */
+.focus-section {
+    font-family: system-ui, -apple-system, sans-serif;
+    max-width: 1100px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    overflow: hidden; /* Prevents side-scrolling during animation */
+}
 
-/* ==========================================
-   STATS SECTION
-   ========================================== */
-.stats{ 
-    display:flex; 
-    justify-content:center; 
-    gap:30px; 
-    padding:100px 8%; 
-    background:#0f1728; 
-} 
-.stat-card{ 
-    background:#131d33; 
-    padding:40px; 
-    border-radius:20px; 
-    text-align:center; 
-    width:280px; 
-} 
-.stat-card h2{ 
-    font-size:52px; 
-    color:#6dd5ff; 
-    margin-bottom:10px; 
-} 
+/* Heading with Left Vertical Accent Line */
+.section-title {
+    font-size: 2rem;
+    font-weight: 750;
+    color: #1d144d;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 4rem;
+}
+
+.section-title::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 1.5rem;
+    background-color: #3b2f70;
+}
+
+/* Two-Column Layout Container */
+.focus-container {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Left Side: List Items */
+.focus-list {
+    flex: 1.2; /* Takes up slightly more room than the card */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+}
+
+.list-item .icon {
+    font-size: 1.35rem;
+    color: #1d144d;
+    margin-top: 0.1rem;
+}
+
+.list-item p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #4a5257;
+    font-weight: 450;
+}
+
+/* Right Side: Quote Card */
+.quote-card {
+    flex: 1;
+    background-color: #f8fafc; /* Very light subtle background */
+    padding: 2.5rem;
+    border-radius: 24px;
+    border-left: 5px solid #2d3c33; /* Dark green/slate accent line on the left */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); /* Soft, premium shadow */
+}
+
+.quote-card p {
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.45;
+    color: #1d144d;
+}
+
+.cta-section {
+    text-align: center;
+    padding: 50px 20px;
+}
+.cta-section .primary-btn {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.quote-highlight-container {
+    text-align: center;
+    max-width: 900px;
+    margin: 60px auto 20px auto;
+    padding: 0 20px;
+}
+
+.highlight-main-quote {
+    color: #2b245b; /* Dark purple matching the image text */
+    font-size: 28px;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.highlight-author {
+    color: #2b245b;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 45px;
+}
+
+.highlight-author span {
+    font-weight: 300;
+    margin: 0 5px;
+}
+
+.highlight-subtext {
+    color: #333333;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.3px;
+}
+
+/* Responsive design for tablets and mobile */
+@media (max-width: 850px) {
+    .focus-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .focus-list, .quote-card {
+        width: 100%;
+    }
+}
+
+/*ANIMATIONS*/
+/* --- SCROLL REVEAL STYLES --- */
+
+/* Base state: Hidden and shifted slightly off-screen */
+.reveal {
+    opacity: 0;
+    transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1), 
+                opacity 2s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform, opacity; /* Optimizes browser performance */
+}
+
+.fade-left {
+    transform: translateX(-50px);
+}
+
+.fade-right {
+    transform: translateX(50px);
+}
+
+/* Active state: Triggered by JavaScript on scroll */
+.reveal.active {
+    opacity: 1;
+    transform: translateX(0);
+}
 
 /* ==========================================
    FOOTER
    ========================================== */
 .footer{ 
     padding:80px 8%; 
-    background:#060b15; 
+    background:#0f1c3f; /* Dark Navy anchor frame for structural contrast */
+    color: white;
 } 
 .footer-content{ 
     display:flex; 
@@ -259,21 +286,27 @@ nav a{
 .footer h3{ 
     font-size:30px; 
     margin-bottom:20px; 
+    color: white;
 } 
 .footer h4{ 
     margin-bottom:20px; 
+    color: #cbd5e1;
 } 
 .footer a{ 
     display:block; 
-    color:#cfcfcf; 
+    color:#94a3b8; 
     text-decoration:none; 
     margin-bottom:12px; 
+    transition: 0.2s;
 } 
+.footer a:hover {
+    color: #ffffff;
+}
 .footer-bottom{ 
     margin-top:60px; 
     border-top:1px solid rgba(255,255,255,0.1); 
     padding-top:20px; 
-    color:#888; 
+    color:#64748b; 
 } 
 
 /* ==========================================
@@ -281,9 +314,9 @@ nav a{
    ========================================== */
 .booking-page { 
     min-height: 100vh; 
-    background: #0a0f1c; 
+    background: #f8f9fa; 
     padding: 140px 8% 60px 8%; 
-    color: white; 
+    color: #0f1c3f; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -295,13 +328,14 @@ nav a{
     max-width: 800px;
 } 
 .booking-header h1 { 
-    font-size: clamp(28px, 6vw, 56px); /* Fluid typography tracking */
+    font-size: clamp(28px, 6vw, 56px); 
     margin-bottom: 15px; 
     font-weight: 700;
     line-height: 1.2;
+    color: #0f1c3f;
 } 
 .booking-header p { 
-    color: #cfcfcf; 
+    color: #4a5568; 
     font-size: clamp(14px, 4vw, 18px); 
 } 
 
@@ -309,12 +343,247 @@ nav a{
 .calendly-inline-widget { 
     width: 100%;
     max-width: 1000px;
-    height: 700px; /* Standard fallback height limit rule for computer displays */
+    height: 700px; 
     border-radius: 20px; 
     overflow: hidden; 
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 15px 40px rgba(15, 28, 63, 0.08);
     background: transparent;
-} 
+    border: 1px solid rgba(15, 28, 63, 0.05);
+}
+
+/*Offerings page*/
+/* Pushes the first section down cleanly beneath your fixed navigation bar */
+.care-section.hero-spacing {
+    margin-top: 110px; /* Adjust this value if your navbar is exceptionally tall */
+}
+
+/* Ensures layout balance remains clean on mobile layouts */
+@media (max-width: 768px) {
+    .care-section.hero-spacing {
+        margin-top: 90px; 
+    }
+}
+/* Section Base Styling */
+.care-section {
+    font-family: system-ui, -apple-system, sans-serif;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+/* Heading with Left Vertical Accent Line */
+.section-title {
+    font-size: 2rem;
+    font-weight: 750;
+    color: #1d144d;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 4rem;
+}
+
+.section-title::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 1.6rem;
+    background-color: #3b2f70;
+}
+
+/* Flex Grid Container for the 3 Cards */
+.cards-container {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+/* Base Card Styling */
+.card {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); /* Soft premium card shadow */
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden; /* Ensures the top-colored border curve matches the card edge */
+}
+
+/* Colored Tops for the Cards */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px; /* Thick colored accent top line */
+}
+
+.card-purple::before {
+    background-color: #3b2f70;
+}
+
+.card-green::before {
+    background-color: #2d3c33; /* Dark green tone matching the 3rd card */
+}
+
+/* Card Content Typography & Spacing */
+.card .icon {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    font-weight: 750;
+    color: #1d144d;
+    margin-bottom: 1.5rem;
+}
+
+.card p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #4a5257;
+}
+
+.card strong {
+    color: #1d144d;
+    font-weight: 700;
+}
+
+/* Unique Heading Colors inside the Cards */
+.card-heading-purple {
+    font-size: 1.4rem;
+    font-weight: 750;
+    color: #3b2f70; /* Purple tone matching the image */
+    margin-bottom: 2rem;
+}
+
+.card-heading-green {
+    font-size: 1.4rem;
+    font-weight: 750;
+    color: #2d3c33; /* Dark green tone matching the image */
+    margin-bottom: 2rem;
+}
+
+/* Checkmark List Styling */
+.card-list {
+    list-style: none; /* Removes default bullet points */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;      /* Even spacing between points */
+}
+
+.card-list li {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #4a5257;
+    position: relative;
+    padding-left: 1.75rem; /* Makes room for the custom checkmark icon */
+}
+
+/* Custom Checkmark Icon using CSS Pseudo-elements */
+.card-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #1d144d; /* Navy checkmark color */
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+/* Section Base Layout */
+.diff-section {
+    font-family: system-ui, -apple-system, sans-serif;
+    max-width: 1200px;
+    margin: 6rem auto;
+    padding: 0 2rem;
+}
+
+.diff-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+    align-items: flex-start;
+}
+
+/* Left Column Styling */
+.diff-statement {
+    flex: 1;
+    padding-top: 1rem;
+}
+
+.diff-statement h3 {
+    font-size: 2rem;
+    font-weight: 750;
+    color: #1d144d;
+    margin-bottom: 1.5rem;
+}
+
+.diff-statement h3 span {
+    color: #2d3c33; /* Soft dark green tone for "Fläche." */
+}
+
+.diff-statement p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #5b656b;
+    max-width: 380px; /* Limits width to replicate the screenshot wrapping */
+}
+
+/* Right Column: Checklist with Circular Badges */
+.diff-list {
+    flex: 1.3;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Vertical space between rows */
+}
+
+.diff-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+}
+
+/* Rounded Circle Checkmark */
+.diff-list .list-badge {
+    width: 28px;
+    height: 28px;
+    background-color: #1d144d; /* Deep navy background */
+    color: #ffffff;            /* White checkmark color */
+    border-radius: 50%;        /* Makes it a perfect circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;            /* Prevents circle from squeezing on text wrap */
+    margin-top: 0.2rem;
+}
+
+/* List Content Text */
+.diff-list .list-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #4a5257;
+}
+
+.diff-list .list-text strong {
+    color: #1d144d;
+    font-weight: 700;
+}
+
+/* Responsive adjustment for tablets and smartphones */
+@media (max-width: 900px) {
+    .cards-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
 
 /* ==========================================
    📱 MOBILE RESPONSIVE MEDIA BLOCK OVERRIDES
@@ -327,7 +596,6 @@ nav a{
         margin-bottom: 25px;
     }
     .calendly-inline-widget { 
-        /* Restores a cleaner ratio so users see the background edges and content headers */
         height: 600px; 
         border-radius: 12px;
     } 
@@ -335,7 +603,6 @@ nav a{
 
 @media (max-width: 480px) {
     .calendly-inline-widget { 
-        /* Clamps down further on extremely short mobile screens */
         height: 540px; 
     } 
 }
@@ -348,9 +615,8 @@ nav a{
         padding: 20px 6%;
     }
     
-    /* Responsive Text Layout Scales (Clamped to avoid breaking screens) */
     .hero h1 { 
-        font-size: clamp(28px, 7vw, 42px); /* Automatically recalculates based on true viewport widths */
+        font-size: clamp(28px, 7vw, 42px); 
         line-height: 1.2;
     } 
     .hero-subtitle {
@@ -411,7 +677,7 @@ nav a{
     .menu-toggle span { 
         width: 100%; 
         height: 2px; 
-        background-color: white; 
+        background-color: #0f1c3f; /* Dark lines for readability */
         border-radius: 2px; 
         transition: transform 0.3s ease, opacity 0.3s ease; 
     } 
@@ -425,14 +691,18 @@ nav a{
         right: -100%; 
         width: 280px; 
         height: 100vh; 
-        background: #0f1728; 
+        background: #ffffff; /* Clean light panel drawer */
         padding: 100px 40px; 
         gap: 24px; 
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5); 
+        box-shadow: -10px 0 30px rgba(15, 28, 63, 0.1); 
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
         z-index: 1000; 
         align-items: flex-start;
+        border-left: 1px solid rgba(15, 28, 63, 0.05);
     } 
+    nav a {
+        color: #0f1c3f;
+    }
     nav.active { 
         right: 0; 
     } 
@@ -451,9 +721,9 @@ nav a{
     /* Dropdown UI Information Buttons */
     .desc-toggle { 
         display: inline-block; 
-        background: rgba(109, 213, 255, 0.1); 
-        color: #6dd5ff; 
-        border: 1px solid rgba(109, 213, 255, 0.3); 
+        background: rgba(59, 77, 43, 0.1); 
+        color: #3b4d2b; 
+        border: 1px solid rgba(59, 77, 43, 0.3); 
         width: 20px; 
         height: 20px; 
         border-radius: 50%; 
@@ -473,8 +743,9 @@ nav a{
         display: none; 
         opacity: 1 !important; 
         visibility: visible !important; 
-        background: rgba(0, 0, 0, 0.2); 
-        border: 1px solid rgba(109, 213, 255, 0.1); 
+        background: rgba(15, 28, 63, 0.04); 
+        color: #4a5568;
+        border: 1px solid rgba(59, 77, 43, 0.15); 
     } 
     .desc-box::before { 
         display: none; 
@@ -501,5 +772,129 @@ nav a{
 @media (min-width: 901px) { 
     .menu-toggle, .desc-toggle { 
         display: none !important; 
+    }
+}
+
+
+
+
+
+
+
+
+/* ==========================================
+   ISOLATED SECTION BACKGROUND
+   ========================================== */
+.cta-container-contact {
+    background-color: #1a164d; /* Deep dark blue background locked to this section */
+    width: 100%;
+    min-height: 80vh; /* Takes up most of the viewport height, or use 'auto' if preferred */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+}
+
+/* ==========================================
+   CTA CONTAINER & TYPOGRAPHY
+   ========================================== */
+.cta-content-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+/* Force white text inside this section to override global body color */
+.cta-heading-contact {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: #ffffff; 
+}
+
+.cta-heading-contact span {
+    display: block; /* Forces "Strategie-Check?" to the next line */
+    color: #4d5efc; /* Bright blue accent color */
+}
+
+.cta-subtitle-contact {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7); /* Slightly muted white */
+    max-width: 750px;
+    margin-bottom: 3rem;
+}
+
+/* ==========================================
+   BUTTONS
+   ========================================== */
+.button-group-contact {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px; /* Fully rounded capsule buttons */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Left Button (Email Link) */
+.btn-primary-contact {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1.5px solid #2e2685; /* Blue-purple border outline */
+}
+
+.btn-primary-contact:hover {
+    border-color: #4d5efc;
+    background-color: rgba(77, 94, 252, 0.1);
+}
+
+/* Right Button (Text Label) */
+.btn-secondary-contact {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle thin white outline */
+    cursor: default;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN (Mobile Friendly)
+   ========================================== */
+@media (max-width: 768px) {
+    .cta-heading-contact {
+        font-size: 2.5rem;
+    }
+    
+    .cta-subtitle-contact {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .button-group-contact {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+    
+    .btn-contact {
+        width: 100%;
+        max-width: 320px;
     }
 }
