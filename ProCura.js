@@ -191,3 +191,32 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error("Error injecting page components:", err));
 });
+
+
+//Header sidebar loader
+document.addEventListener('click', (event) => {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+
+    // 1. Sidebar Panel Toggles (Open / Close Elements)
+    if (event.target.closest('.dropdown-toggle')) {
+        navbar.classList.add('nav-menu-open');
+    } 
+    else if (event.target.closest('.close-toggle') || event.target.closest('.menu-backdrop')) {
+        navbar.classList.remove('nav-menu-open');
+        
+        // Optional: Auto-collapse open accordion instances when sidebar closes entirely
+        document.querySelectorAll('.nav-link-wrapper.has-submenu').forEach(el => {
+            el.classList.remove('is-open');
+            el.querySelector('.submenu-toggle')?.setAttribute('aria-expanded', 'false');
+        });
+    }
+
+    // 2. Nested Submenu Accordion Toggle Interaction
+    const submenuBtn = event.target.closest('.submenu-toggle');
+    if (submenuBtn) {
+        const parentWrapper = submenuBtn.closest('.nav-link-wrapper');
+        const isOpen = parentWrapper.classList.toggle('is-open');
+        submenuBtn.setAttribute('aria-expanded', isOpen);
+    }
+});

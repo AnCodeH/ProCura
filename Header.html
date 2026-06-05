@@ -1,41 +1,53 @@
 <header class="navbar">
-<a class="logo" href="index.html" data-i18n="header-logo">ProCura</a>
-
-    <button class="menu-toggle" aria-label="Toggle Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    <a class="logo" href="index.html" data-i18n="header-logo">ProCura</a>
 
     <nav id="nav-menu">
-        <div class="nav-link-wrapper">
-            <a href="product.html?product=1" data-i18n="header-product1-title">Health Item 1</a>
-            <button class="desc-toggle" aria-label="Toggle Description">i</button>
-            <div class="desc-box" data-i18n="header-product1-desc">Description of item 1</div>
-        </div>
-        <div class="nav-link-wrapper">
-            <a href="product.html?product=2" data-i18n="header-product2-title">Health Item 2</a>
-            <button class="desc-toggle" aria-label="Toggle Description">i</button>
-            <div class="desc-box" data-i18n="header-product2-desc">Description of item 2</div>
-        </div>
-        <div class="nav-link-wrapper">
-            <a href="product.html?product=3" data-i18n="header-product3-title">Health Item 3</a>
-            <button class="desc-toggle" aria-label="Toggle Description">i</button>
-            <div class="desc-box" data-i18n="header-product3-desc">Description of item 3</div>
-        </div>
-        <div class="nav-link-wrapper">
-            <a href="product.html?product=4" data-i18n="header-product4-title">Health Item 4</a>
-            <button class="desc-toggle" aria-label="Toggle Description">i</button>
-            <div class="desc-box" data-i18n="header-product4-desc">Description of item 4</div>
+        <button class="dropdown-toggle" aria-label="Open Menu" aria-haspopup="true">
+            ☰
+        </button>
+        
+        <div class="menu-backdrop"></div>
+
+        <div class="menu-sidebar">
+            <div class="sidebar-header">
+                <button class="close-toggle" aria-label="Close Menu">✕</button>
+            </div>
+
+            <div class="sidebar-content">
+                <div class="nav-link-wrapper has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false">
+                        <span data-i18n="header-services-title">Services</span>
+                        <span class="accordion-arrow">▼</span>
+                    </button>
+                    
+                    <div class="sidebar-submenu">
+                        <a href="product.html?product=1&sub=1" data-i18n="header-service-sub1">HomeCare</a>
+                        <a href="product.html?product=1&sub=2" data-i18n="header-service-sub2">MedTech</a>
+                        <a href="product.html?product=1&sub=3" data-i18n="header-service-sub3">Payers & Insurance Providers</a>
+                        <a href="product.html?product=1&sub=4" data-i18n="header-service-sub4">Service Providers & Care</a>
+                    </div>
+                </div>
+
+                <div class="nav-link-wrapper">
+                    <a href="About.html" data-i18n="header-about-title">About me</a>
+                </div>
+                <div class="nav-link-wrapper">
+                    <a href="Contact.html" data-i18n="header-contact-title">Contact</a>
+                </div>
+
+                <div class="nav-link-wrapper sidebar-home-link">
+                    <a href="index.html" data-i18n="header-home-title">Procura</a>
+                </div>
+            </div>
         </div>
     </nav>
 
     <div class="lang-selector">
         <select id="lang-switch">
-            <option value="en">EN</option>
-            <option value="de">DE</option>
-            <option value="fr">FR</option>
-            <option value="it">IT</option>
+            <option value="en" data-i18n="header-lang-en">EN</option>
+            <option value="de" data-i18n="header-lang-de">DE</option>
+            <option value="fr" data-i18n="header-lang-fr">FR</option>
+            <option value="it" data-i18n="header-lang-it">IT</option>
         </select>
     </div>
 </header>

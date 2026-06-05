@@ -1,42 +1,36 @@
 /* ==========================================
    NAVIGATION BAR
    ========================================== */
-.navbar{ 
-    position:fixed; 
-    top:0; 
-    width:100%; 
-    display:flex; 
-    justify-content:space-between; 
-    align-items:center; 
-    padding:25px 8%; 
-    z-index:1000; 
-    /* Light frosted glass effect */
-    background:rgba(255,255,255,0.75); 
-    backdrop-filter:blur(10px); 
-    -webkit-backdrop-filter:blur(10px);
+.navbar { 
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 25px 8%; 
+    z-index: 1000; 
+    background: rgba(255, 255, 255, 0.75); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(15, 28, 63, 0.08);
+    box-sizing: border-box;
 } 
-.logo{ 
-    text-decoration:none; 
-    color:#0f1c3f; 
-    font-size:28px; 
-    font-weight:700; 
+
+.logo { 
+    text-decoration: none; 
+    color: #0f1c3f; 
+    font-size: 28px; 
+    font-weight: 700; 
 } 
-nav{ 
-    display:flex; 
-    gap:40px; 
-    align-items:center;
+
+#nav-menu { 
+    display: flex; 
+    align-items: center;
+    margin-left: auto; 
+    margin-right: 30px; 
 } 
-nav a{ 
-    color:#3d4a6e; 
-    text-decoration:none; 
-    font-size:15px; 
-    transition:0.3s; 
-} 
-/* Hover accent changed to Dark Olive Green */
-.nav-link-wrapper:hover a { 
-    color:#3b4d2b; 
-} 
+
 .lang-selector select { 
     background: rgba(15, 28, 63, 0.05); 
     color: #0f1c3f; 
@@ -47,26 +41,135 @@ nav a{
     font-family: 'Inter', sans-serif; 
     outline: none; 
 } 
-.lang-selector select option { 
-    background: #ffffff; 
+
+/* ==========================================
+   HAMBURGER TRIGGER & BACKDROP OVERLAY
+   ========================================== */
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 26px; 
+    padding: 8px 12px;
+    line-height: 1;
+    color: #0f1c3f;
+    transition: color 0.3s;
+}
+
+.dropdown-toggle:hover {
+    color: #3b4d2b;
+}
+
+/* Semi-transparent screen mask curtain */
+.menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 28, 63, 0.4);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+    z-index: 1999;
+}
+
+/* Active Class state applied via JavaScript to display overlay curtains */
+.nav-menu-open .menu-backdrop {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ==========================================
+   FULL HEIGHT SLIDE SIDEBAR OVERLAY
+   ========================================== */
+.menu-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 450px; /* Fixed elegant panel size desktop width drawer layout */
+    height: 100vh;
+    background: #ffffff;
+    box-shadow: -10px 0px 40px rgba(15, 28, 63, 0.15);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    /* Pushes sidebar completely hidden offscreen to the right by default */
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active Class state applied via JavaScript to slide the panel layout into view */
+.nav-menu-open .menu-sidebar {
+    transform: translateX(0);
+}
+
+/* Sidebar header area layout framework */
+.sidebar-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 30px 40px 10px 40px;
+}
+
+.close-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #0f1c3f;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.close-toggle:hover {
+    transform: rotate(90deg);
+    color: #3b4d2b;
+}
+
+/* List Menu Wrappers Area Box */
+.sidebar-content {
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ==========================================
+   SIDEBAR NAV ITEMS
+   ========================================== */
+.sidebar-content .nav-link-wrapper { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(15, 28, 63, 0.08);
+    position: relative;
+} 
+
+.sidebar-content .nav-link-wrapper a { 
     color: #0f1c3f; 
+    text-decoration: none; 
+    font-size: 20px; /* Slightly larger text for elegant drawer look */
+    font-weight: 500;
+    transition: color 0.3s, padding-left 0.3s; 
+    flex-grow: 1;
+} 
+
+.sidebar-content .nav-link-wrapper:hover a { 
+    color: #3b4d2b; 
+    padding-left: 8px; /* Smooth subtle indentation animation on link hover */
 } 
 
 /* ==========================================
-   DESKTOP HOVER DESCRIPTION POPUPS
+   DESKTOP HOVER DESCRIPTION POPUPS (SIDE-FLYOUTS)
    ========================================== */
-.nav-link-wrapper { 
-    position: relative; 
-    display: inline-flex; 
-    align-items: center; 
-} 
 .desc-box { 
     position: absolute; 
-    top: 100%; 
-    left: 50%; 
-    transform: translateX(-50%) translateY(15px); 
-    width: 240px; 
-    /* Soft dark navy card with crisp olive accent borders */
+    top: 50%;
+    right: 105%; /* Pops out elegantly to the left side screen margins */
+    transform: translateY(-50%) translateX(-15px); 
+    width: 260px; 
     background: rgba(15, 28, 63, 0.98); 
     backdrop-filter: blur(8px); 
     color: #e2e8f0; 
@@ -76,24 +179,25 @@ nav a{
     border-radius: 12px; 
     border: 1px solid rgba(59, 77, 43, 0.4); 
     box-shadow: 0 10px 30px rgba(15, 28, 63, 0.15); 
-    z-index: 100; 
+    z-index: 2110; 
     white-space: normal; 
     text-align: left; 
     opacity: 0; 
     visibility: hidden; 
     transition: opacity 0.3s ease, transform 0.3s ease; 
-    pointer-events: none; 
+    pointer-events: none;
 } 
+
 .desc-box::before { 
     content: ''; 
     position: absolute; 
-    top: -6px; 
-    left: 50%; 
-    transform: translateX(-50%) rotate(45deg); 
+    top: 50%; 
+    right: -6px; 
+    transform: translateY(-50%) rotate(45deg); 
     width: 10px; 
     height: 10px; 
     background: #0f1c3f; 
-    border-left: 1px solid rgba(59, 77, 43, 0.4); 
+    border-right: 1px solid rgba(59, 77, 43, 0.4); 
     border-top: 1px solid rgba(59, 77, 43, 0.4); 
 } 
 
@@ -101,9 +205,94 @@ nav a{
     .desc-toggle { 
         display: none !important; 
     } 
-    .nav-link-wrapper:hover .desc-box { 
+    .sidebar-content .nav-link-wrapper:hover .desc-box { 
         opacity: 1; 
         visibility: visible; 
-        transform: translateX(-50%) translateY(8px); 
+        transform: translateY(-50%) translateX(-5px); 
     } 
+}
+
+
+
+/* ==========================================
+   NESTED ACCORDION SIDEBAR STYLING
+   ========================================== */
+.nav-link-wrapper.has-submenu {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Allows accordion button to span full width */
+}
+
+/* Accordion trigger styling */
+.submenu-toggle {
+    background: none;
+    border: none;
+    padding: 16px 0;
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    color: #0f1c3f;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s;
+}
+
+.submenu-toggle:hover {
+    color: #3b4d2b;
+}
+
+/* Animated Indicator Arrow */
+.accordion-arrow {
+    font-size: 12px;
+    color: #3d4a6e;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate indicator arrow when menu opens */
+.has-submenu.is-open .accordion-arrow {
+    transform: rotate(-180deg);
+    color: #3b4d2b;
+}
+
+/* Hidden sub-navigation container using max-height for crisp css animations */
+.sidebar-submenu {
+    max-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 15px; /* Indent sub items relative to parents */
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+}
+
+/* Active open state */
+.has-submenu.is-open .sidebar-submenu {
+    max-height: 300px; /* Safe upper threshold bound limit for height interpolation */
+    padding-bottom: 10px;
+}
+
+/* Nested sub-links look */
+.sidebar-submenu a {
+    color: #3d4a6e !important;
+    font-size: 16px !important; /* Slightly smaller than top level entries */
+    font-weight: 400 !important;
+    text-decoration: none;
+    padding: 6px 0;
+    transition: color 0.3s, padding-left 0.3s !important;
+}
+
+.sidebar-submenu a:hover {
+    color: #3b4d2b !important;
+    padding-left: 6px !important;
+}
+
+.sidebar-home-link {
+    margin-top: 20px; /* Generates a breathing room gap above it */
+    border-top: 1px solid rgba(15, 28, 63, 0.15); /* Soft crisp accent line separating it */
+    padding-top: 20px !important;
 }
