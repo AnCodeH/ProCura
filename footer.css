@@ -1,0 +1,36 @@
+/* ==========================================
+   FOOTER
+   ========================================== */
+.footer { 
+    padding: 80px 8%; 
+    background: #0f1c3f; /* Dark Navy anchor frame for structural contrast */
+    color: white;
+} 
+.footer-content { 
+    display: flex; 
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    gap: 40px; 
+} 
+.footer h3 { 
+    font-size: 30px; 
+    margin-bottom: 20px; 
+    color: white;
+} 
+.footer-bottom { 
+    margin-top: 60px; 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    padding-top: 20px; 
+    color: #64748b; 
+} 
+
+/* ==========================================
+   MOBILE MEDIA QUERY COMPONENT OVERRIDES
+   ========================================== */
+@media (max-width: 900px) { 
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0;
+    }
+}

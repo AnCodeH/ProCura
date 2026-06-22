@@ -212,8 +212,6 @@
     } 
 }
 
-
-
 /* ==========================================
    NESTED ACCORDION SIDEBAR STYLING
    ========================================== */
@@ -259,7 +257,7 @@
     color: #3b4d2b;
 }
 
-/* Hidden sub-navigation container using max-height for crisp css animations */
+/* Hidden sub-navigation container using max-height for css animations */
 .sidebar-submenu {
     max-height: 0;
     overflow: hidden;
@@ -270,9 +268,9 @@
     transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
 }
 
-/* Active open state */
+/* Active open state with fixed container threshold bounds */
 .has-submenu.is-open .sidebar-submenu {
-    max-height: 300px; /* Safe upper threshold bound limit for height interpolation */
+    max-height: 500px; /* Increased from 300px to completely reveal all 8 menu components */
     padding-bottom: 10px;
 }
 

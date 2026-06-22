@@ -1,124 +1,45 @@
-//**Counter Animation**
-
+// ==========================================
+// 📊 COUNTER ANIMATION
+// ==========================================
 const counters = document.querySelectorAll('.counter');
 
 counters.forEach(counter => {
-
   counter.innerText = '0';
 
   const updateCounter = () => {
-
     const target = +counter.getAttribute('data-target');
     const current = +counter.innerText;
-
     const increment = target / 100;
 
-    if(current < target){
+    if (current < target) {
       counter.innerText = `${Math.ceil(current + increment)}`;
       setTimeout(updateCounter, 20);
     } else {
       counter.innerText = target;
     }
-
   };
 
   updateCounter();
-
 });
 
-
-//**Smooth Scroll**
-
+// ==========================================
+// ⚓ SMOOTH SCROLL ACCELERATOR
+// ==========================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-  anchor.addEventListener('click', function(e){
-
+  anchor.addEventListener('click', function(e) {
     e.preventDefault();
-
-    document.querySelector(this.getAttribute('href'))
-      .scrollIntoView({
-        behavior:'smooth'
+    const targetEl = document.querySelector(this.getAttribute('href'));
+    if (targetEl) {
+      targetEl.scrollIntoView({
+        behavior: 'smooth'
       });
-
+    }
   });
-
 });
 
-//**PHONE compatibility**
-// 1. Hamburger Drawer Toggle Controller
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.getElementById('nav-menu');
-
-if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation(); // Stops the menu from immediately closing due to global clicks
-        menuToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-}
-
-// 2. Mobile-specific click handling for product description toggles
-document.querySelectorAll('.desc-toggle').forEach(button => {
-    button.addEventListener('click', (e) => {
-        // Only trigger layout changes if the mobile media query layout is currently active
-        //window.innerWidth <= 900
-        if (window.innerWidth <= 900) {
-            e.preventDefault();
-            e.stopPropagation(); // Keeps the menu from snapping shut on interaction
-            
-            const wrapper = button.closest('.nav-link-wrapper');
-            
-            // Auto-collapse any other open description boxes first
-            document.querySelectorAll('.nav-link-wrapper').forEach(item => {
-                if (item !== wrapper) item.classList.remove('is-open');
-            });
-            
-            // Open or close our targeted layout panel
-            wrapper.classList.toggle('is-open');
-        }
-    });
-});
-
-// 3. Smart Global Window Tap Closer
-document.addEventListener('click', (e) => {
-    // If a user clicks completely outside a link wrapper, hide active descriptions
-    if (!e.target.closest('.nav-link-wrapper')) {
-        document.querySelectorAll('.nav-link-wrapper').forEach(item => {
-            item.classList.remove('is-open');
-        });
-    }
-
-    // If a user clicks outside the menu and toggle button, collapse the drawer
-    if (navMenu && menuToggle && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-    }
-});
-
-//Fade in
-document.addEventListener("DOMContentLoaded", function () {
-    const revealElements = document.querySelectorAll(".reveal");
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            // Check if the element has entered the viewport
-            if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-                observer.unobserve(entry.target); // Stops watching once animated
-            }
-        });
-    }, {
-        threshold: 0.15 // Triggers when 15% of the element is visible
-    });
-
-    revealElements.forEach(element => {
-        observer.observe(element);
-    });
-});
-
-//Header and footer injector and language selector
-
-// Function to handle fetching and translating languages
+// ==========================================
+// 🌐 TRANSLATION SYSTEM ENGINE
+// ==========================================
 async function setLanguage(lang) {
   try {
     const response = await fetch(`./locales/${lang}.json`);
@@ -141,12 +62,10 @@ async function setLanguage(lang) {
   }
 }
 
-// Function to setup the language dropdown switcher
 function setupLanguageSwitcher() {
   const langSelect = document.getElementById("lang-switch");
   
   if (langSelect) {
-    // Listen for manual language changes
     langSelect.removeEventListener("change", handleLangChange); // Prevent duplicate listeners
     langSelect.addEventListener("change", handleLangChange);
 
@@ -160,7 +79,9 @@ function handleLangChange(e) {
   setLanguage(e.target.value);
 }
 
-// MAIN INJECTOR & INITIALIZATION FLOW
+// ==========================================
+// 📬 MAIN INJECTOR & INITIALIZATION FLOW
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Fire off both fetches simultaneously
   const fetchHeader = fetch('Header.html')
@@ -177,46 +98,114 @@ document.addEventListener("DOMContentLoaded", () => {
       if (placeholder) placeholder.innerHTML = html;
     });
 
-  // 2. Wait until BOTH header and footer are fully injected into the page
+  // 2. Wait until BOTH header and footer are fully injected into the page template canvas
   Promise.all([fetchHeader, fetchFooter])
     .then(() => {
-      // 3. Now that everything is in the DOM, determine the target language
+      // 3. Determine the targeted display language
       const savedLang = localStorage.getItem("preferredLanguage") || "en";
       
-      // 4. Translate the whole page (including newly injected headers/footers)
-      setLanguage(savedLang).then(() => {
-        // 5. Finally, bind the event listener to the freshly injected dropdown
-        setupLanguageSwitcher();
+      // 4. Translate the whole page layout (including newly injected headers/footers)
+      return setLanguage(savedLang);
+    })
+    .then(() => {
+      // 5. Bind listener handles to the fresh markup
+      setupLanguageSwitcher();
+
+      // =======================================================
+      // 🔥 PHONE COMPATIBILITY (INITIALIZED IN STEP)
+      // =======================================================
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navMenu = document.getElementById('nav-menu');
+
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation(); // Prevents instant closure on global taps
+          menuToggle.classList.toggle('active');
+          navMenu.classList.toggle('active');
+        });
+      }
+
+      // Mobile click handling for inside-navbar context boxes
+      document.querySelectorAll('.desc-toggle').forEach(button => {
+        button.addEventListener('click', (e) => {
+          if (window.innerWidth <= 900) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const wrapper = button.closest('.nav-link-wrapper');
+            
+            // Auto-collapse adjacent accordion columns
+            document.querySelectorAll('.nav-link-wrapper').forEach(item => {
+              if (item !== wrapper) item.classList.remove('is-open');
+            });
+            
+            wrapper.classList.toggle('is-open');
+          }
+        });
+      });
+
+      // =======================================================
+      // ✨ SCROLL REVEAL JAVASCRIPT ANIMATIONS
+      // =======================================================
+      const revealElements = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target); // Kill execution watcher once rendered
+          }
+        });
+      }, {
+        threshold: 0.15 // Triggers viewport rendering at 15% visibility
+      });
+
+      revealElements.forEach(element => {
+        observer.observe(element);
       });
     })
-    .catch(err => console.error("Error injecting page components:", err));
+    .catch(err => console.error("Error building structural interface elements:", err));
 });
 
-
-//Header sidebar loader
+// ==========================================
+// 🖱 GLOBAL CLICKS & DESKTOP EVENT DRIVERS
+// ==========================================
 document.addEventListener('click', (event) => {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
+  const navMenu = document.getElementById('nav-menu');
+  const menuToggle = document.querySelector('.menu-toggle');
 
-    // 1. Sidebar Panel Toggles (Open / Close Elements)
-    if (event.target.closest('.dropdown-toggle')) {
-        navbar.classList.add('nav-menu-open');
-    } 
-    else if (event.target.closest('.close-toggle') || event.target.closest('.menu-backdrop')) {
-        navbar.classList.remove('nav-menu-open');
-        
-        // Optional: Auto-collapse open accordion instances when sidebar closes entirely
-        document.querySelectorAll('.nav-link-wrapper.has-submenu').forEach(el => {
-            el.classList.remove('is-open');
-            el.querySelector('.submenu-toggle')?.setAttribute('aria-expanded', 'false');
-        });
-    }
+  // 1. Smart Global Window Closer (Closes slide-out menus if clicking away)
+  if (!event.target.closest('.nav-link-wrapper')) {
+    document.querySelectorAll('.nav-link-wrapper').forEach(item => {
+      item.classList.remove('is-open');
+    });
+  }
 
-    // 2. Nested Submenu Accordion Toggle Interaction
-    const submenuBtn = event.target.closest('.submenu-toggle');
-    if (submenuBtn) {
-        const parentWrapper = submenuBtn.closest('.nav-link-wrapper');
-        const isOpen = parentWrapper.classList.toggle('is-open');
-        submenuBtn.setAttribute('aria-expanded', isOpen);
-    }
+  if (navMenu && menuToggle && !navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+    menuToggle.classList.remove('active');
+    navMenu.classList.remove('active');
+  }
+
+  // 2. Desktop Context Accordions / Overlay Backdrops
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+
+  if (event.target.closest('.dropdown-toggle')) {
+    navbar.classList.add('nav-menu-open');
+  } 
+  else if (event.target.closest('.close-toggle') || event.target.closest('.menu-backdrop')) {
+    navbar.classList.remove('nav-menu-open');
+    
+    document.querySelectorAll('.nav-link-wrapper.has-submenu').forEach(el => {
+      el.classList.remove('is-open');
+      el.querySelector('.submenu-toggle')?.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  // 3. Submenu Drawer Toggle Controls
+  const submenuBtn = event.target.closest('.submenu-toggle');
+  if (submenuBtn) {
+    const parentWrapper = submenuBtn.closest('.nav-link-wrapper');
+    const isOpen = parentWrapper.classList.toggle('is-open');
+    submenuBtn.setAttribute('aria-expanded', isOpen);
+  }
 });

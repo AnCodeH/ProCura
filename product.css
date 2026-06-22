@@ -1,0 +1,85 @@
+/* ==========================================
+   GLOBAL RESET & FONTS
+   ========================================== */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+} 
+html, body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #f8f9fa; 
+    color: #0f1c3f; 
+    overflow-x: hidden; 
+    -webkit-text-size-adjust: 100%; 
+}
+body { 
+    font-family: 'Inter', sans-serif; 
+} 
+
+/* ==========================================
+   📬 CALENDLY BOOKING LAYOUT RESIZER
+   ========================================== */
+.booking-page { 
+    min-height: 100vh; 
+    background: #f8f9fa; 
+    padding: 140px 8% 60px 8%; 
+    color: #0f1c3f; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+.booking-header { 
+    text-align: center; 
+    margin-bottom: 40px; 
+    width: 100%;
+    max-width: 800px;
+} 
+.booking-header h1 { 
+    font-size: clamp(28px, 6vw, 56px); 
+    margin-bottom: 15px; 
+    font-weight: 700;
+    line-height: 1.2;
+    color: #0f1c3f;
+} 
+.booking-header p { 
+    color: #4a5568; 
+    font-size: clamp(14px, 4vw, 18px); 
+} 
+
+/* Responsive Widget Container Wrapper Frame */
+.calendly-inline-widget { 
+    width: 100%;
+    max-width: 1000px;
+    height: 700px; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    box-shadow: 0 15px 40px rgba(15, 28, 63, 0.08);
+    background: transparent;
+    border: 1px solid rgba(15, 28, 63, 0.05);
+}
+
+/* ==========================================
+   📱 MOBILE RESPONSIVE MEDIA BLOCK OVERRIDES
+   ========================================== */
+@media (max-width: 900px) {
+    .booking-page {
+        padding: 110px 5% 40px 5%;
+    }
+    .booking-header {
+        margin-bottom: 25px;
+    }
+    .calendly-inline-widget { 
+        height: 600px; 
+        border-radius: 12px;
+    } 
+}
+
+@media (max-width: 480px) {
+    .calendly-inline-widget { 
+        height: 540px; 
+    } 
+}

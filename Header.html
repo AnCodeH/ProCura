@@ -1,8 +1,8 @@
 <header class="navbar">
-    <a class="logo" href="index.html" data-i18n="header-logo">ProCura</a>
+    <a class="logo" href="index.html">ProCura</a>
 
     <nav id="nav-menu">
-        <button class="dropdown-toggle" aria-label="Open Menu" aria-haspopup="true">
+        <button class="dropdown-toggle" aria-label="Menü öffnen" aria-haspopup="true">
             ☰
         </button>
         
@@ -10,44 +10,45 @@
 
         <div class="menu-sidebar">
             <div class="sidebar-header">
-                <button class="close-toggle" aria-label="Close Menu">✕</button>
+                <button class="close-toggle" aria-label="Menü schließen">✕</button>
             </div>
 
             <div class="sidebar-content">
                 <div class="nav-link-wrapper has-submenu">
                     <button class="submenu-toggle" aria-expanded="false">
-                        <span data-i18n="header-services-title">Services</span>
+                        <span>Leistungen</span>
                         <span class="accordion-arrow">▼</span>
                     </button>
                     
                     <div class="sidebar-submenu">
-                        <a href="product.html?product=1&sub=1" data-i18n="header-service-sub1">HomeCare</a>
-                        <a href="product.html?product=1&sub=2" data-i18n="header-service-sub2">MedTech</a>
-                        <a href="product.html?product=1&sub=3" data-i18n="header-service-sub3">Payers & Insurance Providers</a>
-                        <a href="product.html?product=1&sub=4" data-i18n="header-service-sub4">Service Providers & Care</a>
+                        <div class="submenu-item-group">
+                            <a href="Kostenträger.html">Kostenträger & Versicherungen</a>
+                        </div>
+
+                        <div class="submenu-item-group">
+                            <a href="MedTech.html">MedTech</a>
+                        </div>
+
+                        <div class="submenu-item-group">
+                            <a href="Leistungserbringer.html">Leistungserbringer & Gesundheitsdienstleister</a>
+                        </div>
+                        <div class="submenu-item-group">
+                            <a href="Interim.html">Interim Management im Gesundheitswesen</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="nav-link-wrapper">
-                    <a href="About.html" data-i18n="header-about-title">About me</a>
+                    <a href="About.html">Über mich</a>
                 </div>
                 <div class="nav-link-wrapper">
-                    <a href="Contact.html" data-i18n="header-contact-title">Contact</a>
+                    <a href="Contact.html">Kontakt</a>
                 </div>
 
                 <div class="nav-link-wrapper sidebar-home-link">
-                    <a href="index.html" data-i18n="header-home-title">Procura</a>
+                    <a href="index.html">ProCura</a>
                 </div>
             </div>
         </div>
     </nav>
-
-    <div class="lang-selector">
-        <select id="lang-switch">
-            <option value="en" data-i18n="header-lang-en">EN</option>
-            <option value="de" data-i18n="header-lang-de">DE</option>
-            <option value="fr" data-i18n="header-lang-fr">FR</option>
-            <option value="it" data-i18n="header-lang-it">IT</option>
-        </select>
-    </div>
 </header>
